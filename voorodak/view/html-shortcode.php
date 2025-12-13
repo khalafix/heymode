@@ -28,18 +28,15 @@ $password_field = $settings['password_field'] ?? '';
 
 $login_type = $settings['login_type'] ?? 'mobile-email';
 
-if ($login_type == 'mobile'){
+if ($login_type == 'mobile') {
 
     $username_placeholder = 'شماره موبایل';
-
-}elseif ($login_type == 'mobile-email'){
+} elseif ($login_type == 'mobile-email') {
 
     $username_placeholder = 'شماره موبایل یا ایمیل';
-
-}else{
+} else {
 
     $username_placeholder = 'شماره موبایل یا ایمیل یا نام کاربری';
-
 }
 
 $reset_token = $_GET['reset_token'] ?? null;
@@ -58,301 +55,297 @@ $button_style = "style=\"--voorodak-button-color: " . esc_attr($button_color) . 
 
         <?php if ($template == 'zarinpal'): ?>
 
-        <div class='voorodak__wrapper-main-right'>
+            <div class='voorodak__wrapper-main-right'>
 
-        <?php endif; ?>
+            <?php endif; ?>
 
-        <div class="voorodak__wrapper-main">
+            <div class="voorodak__wrapper-main">
 
-            <div class="voorodak__wrapper-main-head">
 
-                <svg style="display: none" class="20" height="20" data-slot="icon" aria-hidden="true" fill="none" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 
-                    <path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <?php if (!$reset_token): ?>
 
-                </svg>
+                    <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-username">
+                        <div class="voorodak__wrapper-main-head">
 
-                <?php if ($logo): ?>
+                            
 
-                    <a href="<?php echo home_url(); ?>">
+                            <?php if ($logo): ?>
 
-                        <img src="<?php echo esc_attr($logo); ?>" width="150" height="65" alt="<?php bloginfo('name'); ?>">
+                                <a href="<?php echo home_url(); ?>">
 
-                    </a>
+                                    <img src="<?php echo esc_attr($logo); ?>"  alt="<?php bloginfo('name'); ?>">
 
-                <?php endif; ?>
+                                </a>
 
-            </div>
+                            <?php endif; ?>
 
-            <?php if (!$reset_token): ?>
+                        </div>
+                        <div class="voorodak__wrapper-main-box-title"><?php esc_html_e($form_name); ?></div>
 
-                <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-username">
+                        <div class="voorodak__wrapper-main-box-description">
 
-                    <div class="voorodak__wrapper-main-box-title"><?php esc_html_e($form_name); ?></div>
+                            <p>سلام!</p>
 
-                    <div class="voorodak__wrapper-main-box-description">
+                            <?php if ($login_type == 'mobile') {
 
-                        <p>سلام!</p>
+                                $placeholder_inter = 'شماره موبایل';
+                            } elseif ($login_type == 'mobile-email') {
 
-                        <?php if ($login_type == 'mobile'){
+                                $placeholder_inter = 'شماره موبایل یا ایمیل';
+                            } else {
 
-                            $placeholder_inter = 'شماره موبایل';
+                                $placeholder_inter = 'اطلاعات کاربری';
+                            } ?>
 
-                        }elseif ($login_type == 'mobile-email'){
+                            <p>لطفا <?php esc_html_e($placeholder_inter); ?> خود را وارد کنید</p>
 
-                            $placeholder_inter = 'شماره موبایل یا ایمیل';
+                        </div>
 
-                        }else{
+                        <div class="voorodak__wrapper-main-box-field">
 
-                            $placeholder_inter = 'اطلاعات کاربری';
+                            <input type="text" name="voorodak__username" placeholder="<?php echo esc_attr($username_placeholder); ?>" autocomplete="off" <?php if ($login_type == 'mobile') echo ' inputmode="numeric"'; ?>>
 
-                        } ?>
+                        </div>
 
-                        <p>لطفا <?php esc_html_e($placeholder_inter); ?> خود را وارد کنید</p>
+                        <button id="voorodak__submit-username">ورود</button>
 
-                    </div>
+                        <?php if ($term_editor): ?>
 
-                    <div class="voorodak__wrapper-main-box-field">
+                            <div class="voorodak__terms">
 
-                        <input type="text" name="voorodak__username" placeholder="<?php echo esc_attr($username_placeholder); ?>" autocomplete="off"<?php if ($login_type == 'mobile') echo ' inputmode="numeric"'; ?>>
+                                <?php echo $term_editor; ?>
 
-                    </div>
-
-                    <button id="voorodak__submit-username">ورود</button>
-
-                    <?php if($term_editor): ?>
-
-                    <div class="voorodak__terms">
-
-                        <?php echo $term_editor; ?>
-
-                    </div>
-
-                    <?php endif; ?>
-
-                </div>
-
-                <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-otp" style="display: none">
-
-                    <div class="voorodak__wrapper-main-box-title">کد تایید</div>
-
-                    <div class="voorodak__wrapper-main-box-description"></div>
-
-                    <div class="voorodak__wrapper-main-box-field">
-
-                        <?php if($family_name): ?>
-
-                        <input type="text" name="voorodak__first_name" placeholder="نام" autocomplete="off">
-
-                        <input type="text" name="voorodak__last_name" placeholder="نام خانوادگی" autocomplete="off">
-
-                        <div class="clear"></div>
+                            </div>
 
                         <?php endif; ?>
 
-                        <?php if ($email_field): ?>
+                    </div>
 
-                        <input type="text" name="voorodak__email" placeholder="ایمیل" autocomplete="off">
+                    <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-otp" style="display: none">
+
+                        <div class="voorodak__wrapper-main-box-title">کد تایید</div>
+
+                        <div class="voorodak__wrapper-main-box-description"></div>
+
+                        <div class="voorodak__wrapper-main-box-field">
+
+                            <?php if ($family_name): ?>
+
+                                <input type="text" name="voorodak__first_name" placeholder="نام" autocomplete="off">
+
+                                <input type="text" name="voorodak__last_name" placeholder="نام خانوادگی" autocomplete="off">
+
+                                <div class="clear"></div>
+
+                            <?php endif; ?>
+
+                            <?php if ($email_field): ?>
+
+                                <input type="text" name="voorodak__email" placeholder="ایمیل" autocomplete="off">
+
+                            <?php endif; ?>
+
+                            <?php if ($password_field): ?>
+
+                                <input type="password" name="voorodak__password_register" placeholder="رمز عبور" autocomplete="off">
+
+                            <?php endif; ?>
+
+                            <input type="text" name="voorodak__otp" placeholder="کد تایید" inputmode="numeric" maxlength="<?php echo esc_attr($otp_length) ?>" autocomplete="off">
+
+                        </div>
+
+                        <?php if ($login_type != 'mobile'): ?>
+
+                            <div class="voorodak__wrapper-main-box-action">
+
+                                <a href="#voorodak__wrapper-main-password">ورود با رمز عبور
+
+                                    <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+                                        <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+
+                                    </svg>
+
+                                </a>
+
+                            </div>
 
                         <?php endif; ?>
 
-                        <?php if ($password_field): ?>
+                        <div class="voorodak__wrapper-main-box-timer">
 
-                        <input type="password" name="voorodak__password_register" placeholder="رمز عبور" autocomplete="off">
+                            <div class="voorodak__wrapper-main-box-timer-countdown">
 
-                        <?php endif; ?>
+                                <span>02:00</span>
 
-                        <input type="text" name="voorodak__otp" placeholder="کد تایید" inputmode="numeric" maxlength="<?php echo esc_attr($otp_length) ?>" autocomplete="off">
+                                تا دریافت مجدد کد
+
+                            </div>
+
+                            <div class="voorodak__wrapper-main-box-timer-resend" style="display: none;">
+
+                                دریافت کد
+
+                                <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+                                    <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+
+                                </svg>
+
+                            </div>
+
+                        </div>
+
+                        <button id="voorodak__submit-otp">تایید</button>
 
                     </div>
 
                     <?php if ($login_type != 'mobile'): ?>
 
-                    <div class="voorodak__wrapper-main-box-action">
+                        <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-password" style="display: none">
 
-                        <a href="#voorodak__wrapper-main-password">ورود با رمز عبور
+                            <div class="voorodak__wrapper-main-box-title">رمز عبور را وارد کنید</div>
 
-                            <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <div class="voorodak__wrapper-main-box-field">
 
-                                <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <input type="password" name="voorodak__password" placeholder="رمز عبور" autocomplete="off">
 
-                            </svg>
+                            </div>
 
-                        </a>
+                            <div class="voorodak__wrapper-main-box-action">
 
-                    </div>
+                                <a href="#voorodak__wrapper-main-otp">ورود با رمز یکبار مصرف
+
+                                    <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+                                        <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+
+                                    </svg>
+
+                                </a>
+
+                                <a href="#voorodak__wrapper-main-forget">فراموشی رمز عبور
+
+                                    <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+                                        <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+
+                                    </svg>
+
+                                </a>
+
+                            </div>
+
+                            <button id="voorodak__submit-password">تایید</button>
+
+                        </div>
+
+                        <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-forget" style="display: none">
+
+                            <div class="voorodak__wrapper-main-box-title">فراموشی رمز عبور</div>
+
+                            <div class="voorodak__wrapper-main-box-field">
+
+                                <input type="text" name="voorodak__username-forget" placeholder="شماره موبایل یا ایمیل" autocomplete="off">
+
+                            </div>
+
+                            <button id="voorodak__submit-forget">تایید</button>
+
+                        </div>
+
+                        <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-otp-reset" style="display: none">
+
+                            <div class="voorodak__wrapper-main-box-title">کد تایید</div>
+
+                            <div class="voorodak__wrapper-main-box-field">
+
+                                <input type="text" name="voorodak__otp-reset" placeholder="کد تایید" inputmode="numeric" maxlength="<?php echo esc_attr($otp_length) ?>" autocomplete="off">
+
+                            </div>
+
+                            <div class="voorodak__wrapper-main-box-timer">
+
+                                <div class="voorodak__wrapper-main-box-timer-countdown">
+
+                                    <span>02:00</span>
+
+                                    تا دریافت مجدد کد
+
+                                </div>
+
+                                <div class="voorodak__wrapper-main-box-timer-resend" style="display: none;">
+
+                                    دریافت کد
+
+                                    <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+                                        <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+
+                                    </svg>
+
+                                </div>
+
+                            </div>
+
+                            <button id="voorodak__submit-otp-reset">تایید</button>
+
+                        </div>
 
                     <?php endif; ?>
 
-                    <div class="voorodak__wrapper-main-box-timer">
-
-                        <div class="voorodak__wrapper-main-box-timer-countdown">
-
-                            <span>02:00</span>
-
-                            تا دریافت مجدد کد
-
-                        </div>
-
-                        <div class="voorodak__wrapper-main-box-timer-resend" style="display: none;">
-
-                            دریافت کد
-
-                            <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-
-                                <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-
-                            </svg>
-
-                        </div>
-
-                    </div>
-
-                    <button id="voorodak__submit-otp">تایید</button>
-
-                </div>
+                <?php endif; ?>
 
                 <?php if ($login_type != 'mobile'): ?>
 
-                <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-password" style="display: none">
+                    <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-reset" <?php echo !$reset_token ? ' style="display: none"' : ''; ?>>
 
-                    <div class="voorodak__wrapper-main-box-title">رمز عبور را وارد کنید</div>
+                        <div class="voorodak__wrapper-main-box-title">تغییر رمز عبور</div>
 
-                    <div class="voorodak__wrapper-main-box-field">
+                        <div class="voorodak__wrapper-main-box-field">
 
-                        <input type="password" name="voorodak__password" placeholder="رمز عبور" autocomplete="off">
-
-                    </div>
-
-                    <div class="voorodak__wrapper-main-box-action">
-
-                        <a href="#voorodak__wrapper-main-otp">ورود با رمز یکبار مصرف
-
-                            <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-
-                                <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-
-                            </svg>
-
-                        </a>
-
-                        <a href="#voorodak__wrapper-main-forget">فراموشی رمز عبور
-
-                            <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-
-                                <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-
-                            </svg>
-
-                        </a>
-
-                    </div>
-
-                    <button id="voorodak__submit-password">تایید</button>
-
-                </div>
-
-                <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-forget" style="display: none">
-
-                    <div class="voorodak__wrapper-main-box-title">فراموشی رمز عبور</div>
-
-                    <div class="voorodak__wrapper-main-box-field">
-
-                        <input type="text" name="voorodak__username-forget" placeholder="شماره موبایل یا ایمیل" autocomplete="off">
-
-                    </div>
-
-                    <button id="voorodak__submit-forget">تایید</button>
-
-                </div>
-
-                <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-otp-reset" style="display: none">
-
-                    <div class="voorodak__wrapper-main-box-title">کد تایید</div>
-
-                    <div class="voorodak__wrapper-main-box-field">
-
-                        <input type="text" name="voorodak__otp-reset" placeholder="کد تایید" inputmode="numeric" maxlength="<?php echo esc_attr($otp_length) ?>" autocomplete="off">
-
-                    </div>
-
-                    <div class="voorodak__wrapper-main-box-timer">
-
-                        <div class="voorodak__wrapper-main-box-timer-countdown">
-
-                            <span>02:00</span>
-
-                            تا دریافت مجدد کد
+                            <input type="password" name="voorodak__new-password" placeholder="رمز عبور جدید" autocomplete="off">
 
                         </div>
 
-                        <div class="voorodak__wrapper-main-box-timer-resend" style="display: none;">
+                        <div class="voorodak__wrapper-main-box-field">
 
-                            دریافت کد
-
-                            <svg width="12" height="12" data-slot="icon" aria-hidden="true" fill="none" stroke-width="3" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-
-                                <path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-
-                            </svg>
+                            <input type="password" name="voorodak__new-password2" placeholder="تکرار رمز عبور جدید" autocomplete="off">
 
                         </div>
 
+                        <input type="hidden" name="voorodak__reset-token" value="<?php echo esc_attr($reset_token); ?>">
+
+                        <button id="voorodak__submit-reset">تایید</button>
+
                     </div>
-
-                    <button id="voorodak__submit-otp-reset">تایید</button>
-
-                </div>
 
                 <?php endif; ?>
 
-            <?php endif; ?>
-
-            <?php if ($login_type != 'mobile'): ?>
-
-            <div class="voorodak__wrapper-main-box" id="voorodak__wrapper-main-reset"<?php echo !$reset_token ? ' style="display: none"' : ''; ?>>
-
-                <div class="voorodak__wrapper-main-box-title">تغییر رمز عبور</div>
-
-                <div class="voorodak__wrapper-main-box-field">
-
-                    <input type="password" name="voorodak__new-password" placeholder="رمز عبور جدید" autocomplete="off">
-
-                </div>
-
-                <div class="voorodak__wrapper-main-box-field">
-
-                    <input type="password" name="voorodak__new-password2" placeholder="تکرار رمز عبور جدید" autocomplete="off">
-
-                </div>
-
-                <input type="hidden" name="voorodak__reset-token" value="<?php echo esc_attr($reset_token); ?>">
-
-                <button id="voorodak__submit-reset">تایید</button>
-
             </div>
 
-            <?php endif; ?>
+            <div class="voorodak__wrapper-messages"></div>
 
-        </div>
+            <?php if ($template == 'zarinpal'): ?>
 
-        <div class="voorodak__wrapper-messages"></div>
+            </div>
+            <div class='voorodak__wrapper-main-left' style="background-color: <?php echo ($cover) ? 'transparent' : esc_attr($button_color); ?>">
 
-        <?php if ($template == 'zarinpal'): ?>
+                <?php if ($cover && !wp_is_mobile()): ?>
 
-        </div><div class='voorodak__wrapper-main-left' style="background-color: <?php echo ($cover) ? 'transparent' : esc_attr($button_color) ; ?>">
+                    <img src="<?php echo esc_attr($cover); ?>" width="600" height="500" alt="<?php bloginfo('name'); ?>">
 
-            <?php if ($cover && !wp_is_mobile()): ?>
+                <?php endif; ?>
 
-                <img src="<?php echo esc_attr($cover); ?>" width="600" height="500" alt="<?php bloginfo('name'); ?>">
-
-            <?php endif; ?>
-
-        </div></div>
-
-        <?php endif; ?>
-
+            </div>
     </div>
 
-</div>
+<?php endif; ?>
 
+</div>
+<div class="khalafi-change-login">
+    <img class="khalafi-change-login-banner" src="<?php echo plugin_dir_url(dirname(__FILE__, 1)) . 'assets/images/heymode-login.jpg'; ?>" />
+</div>
+</div>
