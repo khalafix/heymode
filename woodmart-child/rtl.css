@@ -630,3 +630,25 @@ input[type="email"], input[type="date"], input[type="search"], input[type="numbe
 	height: 18px !important;
 
 }
+.page-numbers {
+	padding:5px 10px;
+	border:1px solid #BBBBBB;
+	color:#BBBBBB;
+	border-radius: 8px;
+
+}
+.page-numbers.current {
+  color: #fff;
+  background-color: #E2B886;
+  border: 1px solid #E2B886;
+}
+.page-numbers.prev , .page-numbers.next {
+  color:#0073FF !important;
+  border:none;
+}
+.page-numbers.prev{
+  margin-left: 290px !important;
+}
+.page-numbers.next {
+  margin-right: 290px !important;
+}
