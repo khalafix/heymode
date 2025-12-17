@@ -1,3 +1,5 @@
 /woodmart/*
 /woodmart-child/fonts/
 #/woodmart-child/*
+/woocommerce/*
+/woodmart-core/*
