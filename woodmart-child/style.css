@@ -7,33 +7,41 @@
  Version:      1.0.0
  Text Domain:  woodmart
 */
-
-.myaccount-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.woocommerce-MyAccount-title .entry-title {
+    display: none;
+}
+.wd-builder-off .woocommerce-MyAccount-navigation ul > li > a{
+    padding:5px !important;
+}
+.wd-builder-off .woocommerce-MyAccount-navigation ul > li > a:hover ,
+.wd-builder-off .woocommerce-MyAccount-navigation ul > li.is-active > a {
+  background-color:rgb(0,0,0,0) !important;
 }
 
-.myaccount-nav li a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    border-radius: 14px;
-    color: #e5e7eb;
-    transition: .25s;
+.wd-builder-off .woocommerce-MyAccount-navigation ul > li > a::before {
+  padding: 20px;
+  content: "";
+  background-color: #E2B88636;
+  border-radius: 10px;
+  margin-left: 10px;
+  
 }
 
-.myaccount-nav li.is-active a {
-    background: #f59e0b;
-    color: #000;
+.wd-builder-off .woocommerce-MyAccount-navigation ul > li.is-active > a::before {
+  background-color:#D39245 !important;
+}
+.woocommerce-MyAccount-navigation-link--customer-logout > a::before {
+  background-color: #E8064536 !important;
+
+    background: url('icons/logout.svg') no-repeat 7px center;
+    
+}
+@media (min-width: 769px) {
+  .wd-my-account-sidebar {
+    padding-inline-end: none;
+    padding:30px;
+    border: 1px solid #DDDDDD;
+    border-radius: 24px;
+  }
 }
 
-.myaccount-nav li a:hover {
-    background: rgba(255,255,255,.08);
-}
-
-.myaccount-nav .icon {
-    width: 22px;
-    height: 22px;
-}

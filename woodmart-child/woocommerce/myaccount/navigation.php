@@ -33,10 +33,10 @@ $urls = [
 <nav class="myaccount-nav">
     <ul>
         <?php foreach ( myaccount_menu_items() as $key => $item ) : ?>
-            <li class="<?= myaccount_is_active( $key ) ? 'is-active' : ''; ?>">
-                <a href="<?= esc_url( $item['url'] ); ?>">
-                    <span class="icon icon-<?= esc_attr( $item['icon'] ); ?>"></span>
-                    <span class="text"><?= esc_html( $item['label'] ); ?></span>
+            <li class="<?php echo esc_attr( $key ); ?> <?php echo myaccount_is_active( $key ) ? 'is-active' : ''; ?>">
+                <a href="<?php echo esc_url( $item['url'] ); ?>">
+                    <span class="icon icon-<?php echo esc_attr( $item['icon'] ); ?>"></span>
+                    <span class="text"><?php echo esc_html( $item['label'] ); ?></span>
                 </a>
             </li>
         <?php endforeach; ?>
